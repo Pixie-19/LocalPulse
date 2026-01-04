@@ -5,38 +5,54 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>LocalPulse</title>
 
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="css/main.css" />
   <link rel="stylesheet" href="css/responsive.css" />
 </head>
 <body>
 
   <header class="header">
-    <h1>Loca</h1>
-    <p id="citySummary">What’s happening around you</p>
+    <div class="header-content">
+      <h1>LocalPulse</h1>
+      <p id="citySummary">Discover the heartbeat of your city</p>
+    </div>
   </header>
 
-  <section class="search">
-    <input type="text" id="cityInput" placeholder="Enter city name..." />
-    <button id="searchBtn">Search</button>
+  <section class="search-container">
+    <div class="search-box">
+      <input type="text" id="cityInput" placeholder="Enter city name (e.g., London)..." />
+      <button id="searchBtn">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        Search
+      </button>
+    </div>
   </section>
 
   <div id="loader" class="loader hidden"></div>
 
-  <main class="container">
-    <section class="card">
-      <h2>Weather</h2>
-      <div id="currentWeather"></div>
-      <div id="forecast" class="forecast"></div>
+  <main class="container" id="mainContent">
+    <section class="card weather-card">
+      <div class="card-header">
+        <h2>Weather Forecast</h2>
+      </div>
+      <div id="currentWeather" class="current-weather"></div>
+      <div id="forecast" class="forecast-grid"></div>
     </section>
 
-    <section class="card">
-      <h2>Local News</h2>
-      <div id="newsContainer"></div>
+    <section class="card news-card-container">
+      <div class="card-header">
+        <h2>Local News</h2>
+      </div>
+      <div id="newsContainer" class="news-grid"></div>
     </section>
   </main>
 
   <footer>
-    <p>Built with love</p>
+    <p>&copy; 2024 LocalPulse. Built with code & love.</p>
   </footer>
 
   <script type="module" src="js/app.js"></script>
