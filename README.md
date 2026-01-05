@@ -31,7 +31,7 @@ LocalPulse is a modern, lightweight single-page application (SPA) that aggregate
 Based on the current file organization:
 
 ```text
-LOCA/
+LOCALPULSE/
 ├── css/
 │   ├── main.css          # Core styling, variables, layout, and animations
 │   └── responsive.css    # Media queries for mobile/tablet adaptation
@@ -46,7 +46,7 @@ LOCA/
 ├── LICENSE               # Project License details
 └── README.md             # Project documentation
 ```
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 
@@ -63,40 +63,40 @@ LOCA/
     cd localpulse
     ```
 
-2.  **Configure API Keys**
-    The `js/config.js` file handles your API credentials.
-    *   If the file exists, open it.
-    *   If not, create `js/config.js` and add the following:
+2. **Configure API Keys**
 
-    ```javascript
-    // js/config.js
-    export const WEATHER_API_KEY = "YOUR_OPENWEATHER_API_KEY_HERE"; 
-    export const WEATHER_BASE_URL = "https://api.openweathermap.org/data/2.5/forecast";
+   The `js/config.js` file handles your API credentials.
 
-    export const NEWS_API_KEY = "YOUR_NEWSAPI_KEY_HERE"; 
-    export const NEWS_BASE_URL = "https://newsapi.org/v2/everything";
-    ```
+   - Create a file named `config.js` inside the `js/` folder.
+   - Paste the following code and replace the placeholders with your API keys:
+
+   ```js
+   export const WEATHER_API_KEY = "YOUR_OPENWEATHER_API_KEY_HERE";
+   export const WEATHER_BASE_URL = "https://api.openweathermap.org/data/2.5/forecast";
+
+   export const NEWS_API_KEY = "YOUR_NEWSAPI_KEY_HERE";
+   export const NEWS_BASE_URL = "https://newsapi.org/v2/everything";
+
 
 3.  **Run the App**
     *   **VS Code:** Right-click `index.html` and select **"Open with Live Server"**.
       
-## 🔒 Security Note
+## Security Note
 
 **Do not commit your real API keys to GitHub.**
-Ensure your `.gitignore` file includes `config.js` if you plan to make this repo public.
-
+The project is set up with a `.gitignore` file that excludes `js/config.js`. Ensure this remains in place if you fork or contribute.
 ```text
 # .gitignore
 js/config.js
 ```
-## 📸 Usage
+## Usage
 
 *   **Landing Page:** You are greeted with a clean search interface and a cityscape illustration.
 *   **Search:** Enter a city name (e.g., "Kolkata", "New Delhi") and hit **Enter** or click **Search**.
 *   **Results:** The UI transitions. The cityscape fades out, and cards for Weather and News slide in.
 *   **Navigation:** Click "Home" (or the logo) to reset the view. Click "Services" or "About" to view the modal overlays.
 
-## 🤝 Contributing
+## Contributing
 
 Contributions are welcome! Here's how you can help:
 
@@ -106,10 +106,10 @@ Contributions are welcome! Here's how you can help:
 4.  Push to the branch (`git push origin feature/AmazingFeature`).
 5.  Open a Pull Request.
 
-## 📄 License
+## License
 
 Distributed under the MIT License. See `LICENSE` for more information.
 
 ---
 
-<p align="center">Built with ❤️ by Rishita</p>
+<p align="center">Built with Love by Rishita</p>
