@@ -1,6 +1,17 @@
-import { WEATHER_API_KEY, WEATHER_BASE_URL } from "./config.js";
+const WEATHER_API_KEY = import.meta.env.VITE_WEATHER_API_KEY;
+const WEATHER_BASE_URL = import.meta.env.VITE_WEATHER_BASE_URL;
 
 export async function getWeather(city) {
+  if (!WEATHER_API_KEY) {
+    throw new Error(
+      "Missing VITE_WEATHER_API_KEY. Add it to .env and run the app with Vite (npm run dev)."
+    );
+  }
+  if (!WEATHER_BASE_URL) {
+    throw new Error(
+      "Missing VITE_WEATHER_BASE_URL. Add it to .env and run the app with Vite (npm run dev)."
+    );
+  }
   // Using the forecast endpoint
   const url = `${WEATHER_BASE_URL}?q=${city}&units=metric&cnt=40&appid=${WEATHER_API_KEY}`;
   

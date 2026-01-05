@@ -24,7 +24,7 @@ LocalPulse is a modern, lightweight single-page application (SPA) that aggregate
 - **Data Sources:** 
   - [OpenWeatherMap API](https://openweathermap.org/api) (Weather & Forecast)
   - [NewsAPI](https://newsapi.org/) (Local News Aggregation)
-- **Tools:** VS Code, Live Server
+- **Tools:** Vite
 
 ## Project Structure
 
@@ -37,11 +37,10 @@ LOCALPULSE/
 │   └── responsive.css    # Media queries for mobile/tablet adaptation
 ├── js/
 │   ├── app.js            # Main entry point, event listeners, and navigation logic
-│   ├── config.js         # API Keys and Base URLs (See Configuration)
 │   ├── news.js           # NewsAPI fetch logic
 │   ├── ui.js             # DOM manipulation and rendering functions
 │   ├── weather.js        # OpenWeatherMap fetch logic and data processing
-├── .gitignore            # Files to exclude from Git (e.g., config.js, node_modules)
+├── .gitignore            # Files to exclude from Git (e.g., .env, node_modules)
 ├── index.html            # Main HTML structure
 ├── LICENSE               # Project License details
 └── README.md             # Project documentation
@@ -53,7 +52,7 @@ LOCALPULSE/
 1.  **API Keys:** You need to obtain free API keys from:
     *   [OpenWeatherMap](https://openweathermap.org/api)
     *   [NewsAPI](https://newsapi.org/)
-2.  **Local Server:** Since this project uses ES6 Modules (`import`/`export`), you cannot simply double-click `index.html`. You must serve it via a local server (e.g., VS Code "Live Server" extension).
+2.  **Runtime:** This project uses Vite so the frontend can read `.env` values via `import.meta.env`.
 
 ### Installation
 
@@ -63,32 +62,23 @@ LOCALPULSE/
     cd localpulse
     ```
 
-2. **Configure API Keys**
+2. **Configure API Keys (.env)**
 
-   The `js/config.js` file handles your API credentials.
+    - Open `.env` and set:
+      - `VITE_WEATHER_API_KEY`
+      - `VITE_NEWS_API_KEY`
 
-   - Create a file named `config.js` inside the `js/` folder.
-   - Paste the following code and replace the placeholders with your API keys:
+3. **Install & Run**
 
-   ```js
-   export const WEATHER_API_KEY = "YOUR_OPENWEATHER_API_KEY_HERE";
-   export const WEATHER_BASE_URL = "https://api.openweathermap.org/data/2.5/forecast";
-
-   export const NEWS_API_KEY = "YOUR_NEWSAPI_KEY_HERE";
-   export const NEWS_BASE_URL = "https://newsapi.org/v2/everything";
-
-
-3.  **Run the App**
-    *   **VS Code:** Right-click `index.html` and select **"Open with Live Server"**.
+    ```bash
+    npm install
+    npm run dev
+    ```
       
 ## Security Note
 
 **Do not commit your real API keys to GitHub.**
-The project is set up with a `.gitignore` file that excludes `js/config.js`. Ensure this remains in place if you fork or contribute.
-```text
-# .gitignore
-js/config.js
-```
+The project is set up to ignore `.env` via `.gitignore`. Ensure this remains in place if you fork or contribute.
 ## Usage
 
 *   **Landing Page:** You are greeted with a clean search interface and a cityscape illustration.
