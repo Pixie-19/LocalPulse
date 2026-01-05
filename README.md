@@ -1,4 +1,4 @@
-# LocalPulse 🌍
+# Loca
 
 A web app to view live weather and location-based news using Vanilla JavaScript.
 
