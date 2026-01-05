@@ -1,16 +1,15 @@
 --- START OF FILE main.css ---
 
 :root {
-  --primary: #4f46e5;       /* Indigo */
+  --primary: #4f46e5;       
   --primary-dark: #4338ca;
-  --secondary: #ec4899;     /* Pink accent */
+  --secondary: #ec4899;     
   --bg-color: #f8fafc;
   --text-main: #1e293b;
   --text-light: #64748b;
   --white: #ffffff;
-  --glass: rgba(255, 255, 255, 0.8);
   --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
   --radius: 16px;
   --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -62,14 +61,57 @@ body {
   min-height: 100vh;
 }
 
+/* --- Navbar --- */
+.navbar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  padding: 1.5rem 2rem;
+  transition: var(--transition);
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: flex-end; 
+  align-items: center;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--text-main);
+  font-weight: 500;
+  font-size: 1rem;
+  padding: 0.5rem 1.2rem;
+  border-radius: 50px; /* Pill shape */
+  transition: all 0.2s;
+  background: rgba(255, 255, 255, 0.3); /* Subtle background */
+}
+
+.nav-links a:hover, .nav-links a.active {
+  background: var(--white);
+  color: var(--primary);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
 /* --- Hero Section (Initial State) --- */
 .hero {
-  flex: 1; /* Takes full height initially */
+  flex: 1; 
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 2rem;
   transition: var(--transition);
+  margin-top: 0;
 }
 
 .hero-content {
@@ -87,6 +129,7 @@ body {
   -webkit-text-fill-color: transparent;
   margin-bottom: 0.5rem;
   letter-spacing: -1px;
+  cursor: pointer;
 }
 
 .tagline {
@@ -101,13 +144,14 @@ body {
   padding: 6px;
   border-radius: 50px;
   display: flex;
+  align-items: center;
   box-shadow: var(--shadow-lg);
   border: 1px solid rgba(255,255,255,0.5);
-  transition: transform 0.2s ease;
+  transition: transform 0.2s ease, width 0.4s ease;
 }
 
 .search-box:focus-within {
-  transform: scale(1.02);
+  transform: scale(1.01);
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
 }
 
@@ -124,65 +168,89 @@ body {
   border: none;
   outline: none;
   font-size: 1rem;
-  padding: 1rem;
+  padding: 0.8rem;
   background: transparent;
   color: var(--text-main);
+  min-width: 0; /* Fix flex issue */
 }
 
 .search-box button {
   background: var(--primary);
   color: white;
   border: none;
-  padding: 0 2rem;
+  padding: 0.8rem 2rem;
   border-radius: 50px;
   font-weight: 600;
   cursor: pointer;
   transition: background 0.2s;
+  white-space: nowrap;
 }
 
 .search-box button:hover {
   background: var(--primary-dark);
 }
 
-/* --- Active State (After Search) --- */
-/* This class is added by JS */
+/* --- Active State (Search Results Header) --- */
+
+/* 1. Navbar becomes compact and moves right */
+body.search-active .navbar {
+  width: auto;
+  left: auto;
+  right: 0;
+  padding: 1rem 2rem;
+  pointer-events: none; /* Let clicks pass through to hero if needed */
+}
+body.search-active .nav-container {
+  pointer-events: auto; /* Re-enable clicks on links */
+}
+
+/* 2. Hero becomes the header bar */
 body.search-active .hero {
   flex: 0 0 auto;
   padding: 1rem 2rem;
-  background: rgba(255, 255, 255, 0.8);
+  /* Removed the large padding-top. Now aligned with navbar. */
+  background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid rgba(0,0,0,0.05);
-  justify-content: space-between;
-  display: block; /* Allows grid/flex override */
+  display: block; 
 }
 
+/* 3. Hero Content Layout: Logo - Search - (Gap for Nav) */
 body.search-active .hero-content {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   max-width: 1200px;
   margin: 0 auto;
   gap: 2rem;
+  /* Make space for the absolute navbar on the right */
+  padding-right: 100px; 
 }
 
 body.search-active .logo {
   font-size: 1.5rem;
   margin: 0;
+  flex-shrink: 0;
 }
 
 body.search-active .tagline {
   display: none;
 }
 
+/* 4. Search Box becomes smaller and aligned */
 body.search-active .search-box {
   box-shadow: none;
   border: 1px solid #e2e8f0;
-  max-width: 400px;
-  margin: 0;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto; /* Centers it between logo and nav space */
 }
 
 body.search-active .search-box input {
   padding: 0.6rem;
+}
+
+body.search-active .search-box button {
+  padding: 0.6rem 1.5rem;
 }
 
 /* --- Main Content --- */
@@ -313,6 +381,7 @@ body.search-active .search-box input {
   padding: 1.5rem;
   color: var(--text-light);
   font-size: 0.9rem;
+  margin-top: auto;
 }
 
 @keyframes spin { 100% { transform: rotate(360deg); } }
