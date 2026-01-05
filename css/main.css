@@ -1,93 +1,142 @@
 --- START OF FILE main.css ---
 
 :root {
-  --primary: #2563eb;
-  --primary-dark: #1e40af;
-  --accent: #f59e0b;
-  --bg-color: #f3f4f6;
-  --card-bg: #ffffff;
-  --text-main: #1f2937;
-  --text-muted: #6b7280;
-  --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  --radius: 12px;
+  --primary: #4f46e5;       /* Indigo */
+  --primary-dark: #4338ca;
+  --secondary: #ec4899;     /* Pink accent */
+  --bg-color: #f8fafc;
+  --text-main: #1e293b;
+  --text-light: #64748b;
+  --white: #ffffff;
+  --glass: rgba(255, 255, 255, 0.8);
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --radius: 16px;
+  --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
   font-family: 'Inter', sans-serif;
   background: var(--bg-color);
   color: var(--text-main);
-  line-height: 1.6;
-  min-height: 100vh;
+  height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* --- Decorative Background Blobs --- */
+.bg-shape {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(80px);
+  z-index: -1;
+  opacity: 0.6;
+  animation: float 10s infinite ease-in-out;
+}
+.shape-1 {
+  top: -10%;
+  left: -10%;
+  width: 50vw;
+  height: 50vw;
+  background: rgba(79, 70, 229, 0.2);
+}
+.shape-2 {
+  bottom: -10%;
+  right: -10%;
+  width: 40vw;
+  height: 40vw;
+  background: rgba(236, 72, 153, 0.15);
+  animation-delay: -5s;
+}
+@keyframes float {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(20px, 20px); }
+}
+
+/* --- Layout Wrapper --- */
+.app-wrapper {
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
 }
 
-/* Header */
-.header {
-  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-  color: white;
-  padding: 3rem 1.5rem;
+/* --- Hero Section (Initial State) --- */
+.hero {
+  flex: 1; /* Takes full height initially */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  transition: var(--transition);
+}
+
+.hero-content {
   text-align: center;
-  margin-bottom: -2rem; /* Overlap effect */
+  width: 100%;
+  max-width: 600px;
+  transition: var(--transition);
 }
 
-.header h1 {
-  font-size: 2.5rem;
-  font-weight: 700;
+.logo {
+  font-size: 3.5rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 0.5rem;
   letter-spacing: -1px;
 }
 
-.header p {
-  opacity: 0.9;
-  font-weight: 300;
-  margin-top: 0.5rem;
+.tagline {
+  color: var(--text-light);
+  font-size: 1.1rem;
+  margin-bottom: 2.5rem;
 }
 
-/* Search */
-.search-container {
-  padding: 0 1rem;
-  margin-bottom: 2rem;
-  display: flex;
-  justify-content: center;
-}
-
+/* --- Search Box --- */
 .search-box {
-  background: white;
-  padding: 0.75rem;
+  background: var(--white);
+  padding: 6px;
   border-radius: 50px;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
   display: flex;
-  gap: 10px;
-  width: 100%;
-  max-width: 500px;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid rgba(255,255,255,0.5);
+  transition: transform 0.2s ease;
+}
+
+.search-box:focus-within {
+  transform: scale(1.02);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+.input-wrapper {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  padding-left: 1rem;
+  color: var(--text-light);
 }
 
 .search-box input {
   flex: 1;
   border: none;
   outline: none;
-  padding: 0.5rem 1rem;
   font-size: 1rem;
-  border-radius: 50px;
+  padding: 1rem;
+  background: transparent;
+  color: var(--text-main);
 }
 
 .search-box button {
   background: var(--primary);
   color: white;
   border: none;
-  padding: 0.75rem 1.5rem;
+  padding: 0 2rem;
   border-radius: 50px;
   font-weight: 600;
   cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 8px;
   transition: background 0.2s;
 }
 
@@ -95,173 +144,175 @@ body {
   background: var(--primary-dark);
 }
 
-/* Layout */
-.container {
-  width: 90%;
+/* --- Active State (After Search) --- */
+/* This class is added by JS */
+body.search-active .hero {
+  flex: 0 0 auto;
+  padding: 1rem 2rem;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+  justify-content: space-between;
+  display: block; /* Allows grid/flex override */
+}
+
+body.search-active .hero-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   max-width: 1200px;
   margin: 0 auto;
-  display: grid;
   gap: 2rem;
+}
+
+body.search-active .logo {
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+body.search-active .tagline {
+  display: none;
+}
+
+body.search-active .search-box {
+  box-shadow: none;
+  border: 1px solid #e2e8f0;
+  max-width: 400px;
+  margin: 0;
+}
+
+body.search-active .search-box input {
+  padding: 0.6rem;
+}
+
+/* --- Main Content --- */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
   flex: 1;
-  padding-bottom: 3rem;
+}
+
+.content-grid {
+  display: grid;
+  grid-template-columns: 350px 1fr;
+  gap: 2rem;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeSlideUp 0.6s forwards 0.3s;
+}
+
+@keyframes fadeSlideUp {
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .card {
-  background: var(--card-bg);
+  background: var(--white);
   border-radius: var(--radius);
-  box-shadow: var(--shadow);
   padding: 1.5rem;
-  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid rgba(255,255,255,0.6);
 }
 
 .card h2 {
   font-size: 1.25rem;
-  margin-bottom: 1.5rem;
-  border-bottom: 2px solid var(--bg-color);
-  padding-bottom: 0.5rem;
-  color: var(--text-main);
-}
-
-/* Weather Styles */
-.current-weather {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background: linear-gradient(to right, #e0f2fe, #fff);
-  padding: 1.5rem;
-  border-radius: var(--radius);
-  margin-bottom: 1.5rem;
-}
-
-.cw-temp {
-  font-size: 3rem;
   font-weight: 700;
-  color: var(--primary-dark);
+  margin-bottom: 1rem;
 }
 
-.cw-details p {
-  color: var(--text-muted);
-  font-size: 0.9rem;
+/* Weather Specifics */
+.current-weather {
+  text-align: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #f1f5f9;
 }
 
-.forecast-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+.current-weather h3 {
+  font-size: 3.5rem;
+  font-weight: 800;
+  color: var(--primary);
+  line-height: 1;
+  margin: 10px 0;
+}
+
+.forecast-row {
+  display: flex;
   gap: 10px;
+  overflow-x: auto;
+  padding-bottom: 10px;
 }
 
 .forecast-item {
+  min-width: 70px;
   text-align: center;
-  background: #f8fafc;
   padding: 10px;
-  border-radius: 8px;
-  border: 1px solid #e2e8f0;
+  background: #f8fafc;
+  border-radius: 12px;
+  font-size: 0.85rem;
 }
 
-.forecast-item img {
-  width: 40px;
-  height: 40px;
-}
-
-/* News Styles */
+/* News Specifics */
 .news-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 1.5rem;
 }
 
 .news-item {
-  display: flex;
-  flex-direction: column;
-  border: 1px solid #e5e7eb;
-  border-radius: 8px;
+  background: white;
+  border-radius: 12px;
   overflow: hidden;
-  transition: transform 0.2s, box-shadow 0.2s;
-  background: #fff;
+  transition: transform 0.2s;
+  border: 1px solid #f1f5f9;
 }
 
 .news-item:hover {
-  transform: translateY(-3px);
-  box-shadow: var(--shadow);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
 }
 
 .news-item img {
   width: 100%;
-  height: 160px;
+  height: 150px;
   object-fit: cover;
-  background: #e5e7eb;
 }
 
 .news-content {
   padding: 1rem;
-  display: flex;
-  flex-direction: column;
-  flex: 1;
 }
 
 .news-item h3 {
   font-size: 1rem;
-  margin-bottom: 0.5rem;
   line-height: 1.4;
+  margin-bottom: 0.5rem;
 }
 
 .news-item a {
   text-decoration: none;
   color: var(--text-main);
-}
-
-.news-item a:hover {
-  color: var(--primary);
-}
-
-.news-item p {
-  font-size: 0.85rem;
-  color: var(--text-muted);
-  margin-bottom: 1rem;
-  flex: 1;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
-.news-source {
-  font-size: 0.75rem;
-  color: var(--primary);
   font-weight: 600;
-  text-transform: uppercase;
 }
 
-.extreme-weather-alert {
-  border: 1px solid #fecaca;
-  background: #fef2f2;
-}
-
-/* Loader */
 .loader {
-  width: 48px;
-  height: 48px;
-  border: 5px solid #FFF;
-  border-bottom-color: var(--primary);
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid var(--primary);
   border-radius: 50%;
-  display: inline-block;
-  box-sizing: border-box;
-  animation: rotation 1s linear infinite;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
   margin: 2rem auto;
-  display: block;
 }
 
 .hidden { display: none !important; }
 
-footer {
+/* Footer */
+.main-footer {
   text-align: center;
-  padding: 2rem;
-  color: var(--text-muted);
+  padding: 1.5rem;
+  color: var(--text-light);
   font-size: 0.9rem;
-  margin-top: auto;
 }
 
-@keyframes rotation {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
+@keyframes spin { 100% { transform: rotate(360deg); } }

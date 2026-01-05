@@ -1,5 +1,3 @@
-
-
 import { getWeather, isExtremeWeather } from "./weather.js";
 import { getNews } from "./news.js";
 import { renderWeather, renderNews, showLoader } from "./ui.js";
@@ -7,38 +5,51 @@ import { renderWeather, renderNews, showLoader } from "./ui.js";
 const searchBtn = document.getElementById("searchBtn");
 const cityInput = document.getElementById("cityInput");
 const citySummary = document.getElementById("citySummary");
+const contentGrid = document.getElementById("contentGrid");
 
-// Initially hide main content until search
-document.getElementById("mainContent").classList.add("hidden");
+// Trigger for the layout animation
+function activateSearchMode() {
+  document.body.classList.add("search-active");
+  document.getElementById("mainContent").classList.remove("hidden");
+}
 
 async function handleSearch() {
   const city = cityInput.value.trim();
   if (!city) return alert("Please enter a city name.");
 
+  // 1. Switch UI Layout
+  activateSearchMode();
+  
+  // 2. Show Loader, Hide Old Content
+  contentGrid.classList.add("hidden");
   showLoader(true);
-  citySummary.textContent = `Searching for "${city}"...`;
+  
+  // 3. Update Text
+  citySummary.textContent = `Searching...`;
 
   try {
+    // 4. Fetch Data
     const weatherData = await getWeather(city);
     
-    // Check if weather data is valid
-    if(weatherData.cod !== "200") {
-        throw new Error(weatherData.message || "City not found");
+    if (weatherData.cod !== "200") {
+      throw new Error(weatherData.message || "City not found");
     }
 
-    renderWeather(weatherData);
-
     const extreme = isExtremeWeather(weatherData);
-    
-    // Pass 'extreme' context to news search (optional keywords) or UI styling
     const newsData = await getNews(city);
+
+    // 5. Render
+    renderWeather(weatherData);
     renderNews(newsData, extreme);
 
-    citySummary.textContent = `Latest updates for ${weatherData.city.name}, ${weatherData.city.country}`;
+    // 6. Show Content
+    contentGrid.classList.remove("hidden");
+    citySummary.textContent = `Current Pulse: ${weatherData.city.name}, ${weatherData.city.country}`;
+    
   } catch (err) {
-    alert(`Error: ${err.message}`);
     console.error(err);
-    citySummary.textContent = "Something went wrong. Try again.";
+    alert(err.message);
+    citySummary.textContent = "Discover the heartbeat of your city";
   } finally {
     showLoader(false);
   }
@@ -46,7 +57,6 @@ async function handleSearch() {
 
 searchBtn.addEventListener("click", handleSearch);
 
-// Allow pressing Enter key
 cityInput.addEventListener("keypress", (e) => {
   if (e.key === "Enter") handleSearch();
 });
