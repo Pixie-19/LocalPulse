@@ -45,7 +45,7 @@ const MODAL_CONTENT = {
   }
 };
 
-/* --- Navigation Logic --- */
+/* Navigation Logic */
 
 document.querySelectorAll(".nav-links a").forEach(link => {
   link.addEventListener("click", (e) => {
@@ -73,7 +73,7 @@ function handleNavClick(type) {
   }
 }
 
-/* --- Modal Logic --- */
+/* Modal Logic */
 
 function openModal(key) {
   const content = MODAL_CONTENT[key];
@@ -97,7 +97,7 @@ modal.addEventListener("click", (e) => {
 });
 
 
-/* --- Core App Logic --- */
+/* Core App Logic */
 
 function activateSearchMode() {
   document.body.classList.add("search-active");

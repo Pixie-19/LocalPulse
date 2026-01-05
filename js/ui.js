@@ -37,7 +37,6 @@ export function renderWeather(data) {
   const forecastEl = document.getElementById("forecast");
   forecastEl.innerHTML = "";
 
-  // Taking slices to get approx next days or intervals
   // OpenWeatherMap forecast is every 3 hours. index 8 is +24h
   for (let i = 8; i < data.list.length; i += 8) {
     const day = data.list[i];
