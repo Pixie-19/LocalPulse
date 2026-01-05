@@ -1,4 +1,3 @@
-
 export function showLoader(show) {
   const loader = document.getElementById("loader");
   const main = document.getElementById("mainContent");

@@ -1,4 +1,3 @@
-
 import { WEATHER_API_KEY, WEATHER_BASE_URL } from "./config.js";
 
 export async function getWeather(city) {

@@ -1,15 +1,13 @@
---- START OF FILE main.css ---
-
 :root {
-  --primary: #1e3a8a;       /* Dark Blue (Button) */
+  --primary: #1e3a8a;       
   --primary-hover: #172554;
-  --accent: #3b82f6;        /* Bright Blue */
+  --accent: #3b82f6;        
   --bg-gradient-start: #dbeafe;
   --bg-gradient-end: #eff6ff;
   --card-bg: #ffffff;
-  --stroke: #64748b;        /* Building Outlines */
-  --fill-light: #f1f5f9;    /* Building Fill */
-  --fill-blue: #dbeafe;     /* Accent Fill */
+  --stroke: #64748b;        
+  --fill-light: #f1f5f9;    
+  --fill-blue: #dbeafe;     
   --text-main: #0f172a;
   --text-muted: #64748b;
   --radius-card: 24px;
@@ -31,7 +29,6 @@ body {
   position: relative;
 }
 
-/* Background Dots Decoration */
 .bg-pattern {
   position: absolute;
   top: 0; left: 0; width: 100%; height: 100%;
@@ -41,7 +38,6 @@ body {
   z-index: -1;
 }
 
-/* --- Main Card Wrapper --- */
 .app-wrapper {
   width: 100%;
   padding: 2rem;
@@ -54,7 +50,7 @@ body {
   background: var(--card-bg);
   width: 100%;
   max-width: 1200px;
-  min-height: 80vh; /* Large card look */
+  min-height: 80vh; 
   border-radius: var(--radius-card);
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1);
   position: relative;
@@ -64,7 +60,7 @@ body {
   transition: min-height 0.5s ease;
 }
 
-/* --- Navbar --- */
+/* Navbar */
 .navbar {
   padding: 2rem 3rem;
   z-index: 10;
@@ -86,12 +82,7 @@ body {
   color: var(--text-main);
 }
 
-.logo-icon {
-  width: 24px;
-  height: 24px;
-  background: var(--text-main);
-  border-radius: 4px 12px 4px 12px; /* Abstract shape */
-}
+
 
 .nav-links {
   list-style: none;
@@ -127,7 +118,7 @@ body {
   background: var(--primary-hover);
 }
 
-/* --- Hero Section --- */
+/* Hero Section */
 .hero {
   flex: 1;
   display: flex;
@@ -167,7 +158,7 @@ body {
   letter-spacing: -0.5px;
 }
 
-/* --- Search Bar --- */
+/* Search Bar */
 .search-container {
   display: flex;
   justify-content: center;
@@ -255,113 +246,9 @@ body {
   background: var(--primary-hover);
 }
 
-/* --- Cityscape Illustration (CSS Art) --- */
-.cityscape {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 200px;
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  gap: 15px;
-  padding: 0 2rem;
-  pointer-events: none; /* Let clicks pass through if needed */
-  transition: opacity 0.5s ease, transform 0.5s ease;
-}
 
-.building {
-  border: 2px solid var(--stroke);
-  background: var(--fill-light);
-  position: relative;
-  z-index: 2;
-}
 
-/* Building 1: Tall with rows */
-.b1 {
-  width: 60px;
-  height: 180px;
-  background: white;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  padding: 10px 5px;
-  border-bottom: none;
-}
-.b1 .window-row {
-  display: flex;
-  gap: 4px;
-  justify-content: center;
-}
-.b1 span { width: 15px; height: 25px; background: var(--fill-blue); border: 1px solid var(--stroke); }
-
-/* Building 2: Sloped Roof */
-.b2 {
-  width: 100px;
-  height: 120px;
-  background: white;
-  border-bottom: none;
-}
-.b2 .roof-slope {
-  position: absolute;
-  top: -40px; left: -2px;
-  width: 0; height: 0;
-  border-left: 50px solid transparent;
-  border-right: 50px solid transparent;
-  border-bottom: 40px solid var(--stroke);
-}
-.b2 .roof-slope::after {
-  content: '';
-  position: absolute;
-  top: 4px; left: -46px;
-  border-left: 46px solid transparent;
-  border-right: 46px solid transparent;
-  border-bottom: 36px solid white;
-}
-.b2 .window-grid {
-  width: 60%; height: 60%; margin: 20px auto;
-  background: var(--fill-blue);
-  border: 2px solid var(--stroke);
-}
-
-/* Building 3: Modern slanted */
-.b3 {
-  width: 140px;
-  height: 140px;
-  background: white;
-  border-bottom: none;
-}
-.b3 .b3-top {
-  position: absolute;
-  top: -2px; right: -2px;
-  width: 100%; height: 100%;
-  background: linear-gradient(135deg, transparent 50%, var(--fill-light) 50%);
-  border-right: 2px solid var(--stroke);
-}
-
-/* Street Line */
-.street-line {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background: var(--stroke);
-  z-index: 10;
-}
-
-.tree {
-  width: 0; height: 0;
-  border-left: 10px solid transparent;
-  border-right: 10px solid transparent;
-  border-bottom: 30px solid var(--stroke);
-  margin-bottom: 0;
-  z-index: 3;
-}
-
-/* --- Search Active State Modifications --- */
-
-/* When searching, we hide the city and adjust layout */
+/* Search Active State */
 body.search-active .cityscape {
   opacity: 0;
   transform: translateY(100px);
@@ -384,7 +271,7 @@ body.search-active .search-box {
   background: #f8fafc;
 }
 
-/* --- Results Section --- */
+/* Results */
 .results-container {
   padding: 0 3rem 3rem 3rem;
   flex: 1;
@@ -419,43 +306,15 @@ body.search-active .search-box {
   color: var(--text-main);
 }
 
-/* News & Weather Internal Styles */
 .current-weather {
-  text-align: center;
-  padding-bottom: 1rem;
-  border-bottom: 1px solid #f1f5f9;
-  margin-bottom: 1rem;
+  text-align: center; padding-bottom: 1rem; border-bottom: 1px solid #f1f5f9; margin-bottom: 1rem;
 }
-.current-weather h3 {
-  font-size: 3rem;
-  color: var(--primary);
-  margin: 0;
-}
-.forecast-row {
-  display: flex;
-  gap: 10px;
-  overflow-x: auto;
-}
-.forecast-item {
-  min-width: 60px;
-  text-align: center;
-  padding: 8px;
-  background: #f8fafc;
-  border-radius: 8px;
-  font-size: 0.8rem;
-}
+.current-weather h3 { font-size: 3rem; color: var(--primary); margin: 0; }
+.forecast-row { display: flex; gap: 10px; overflow-x: auto; }
+.forecast-item { min-width: 60px; text-align: center; padding: 8px; background: #f8fafc; border-radius: 8px; font-size: 0.8rem; }
 
-.news-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: 1.5rem;
-}
-.news-item {
-  border: 1px solid #f1f5f9;
-  border-radius: 12px;
-  overflow: hidden;
-  transition: transform 0.2s;
-}
+.news-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.5rem; }
+.news-item { border: 1px solid #f1f5f9; border-radius: 12px; overflow: hidden; transition: transform 0.2s; }
 .news-item:hover { transform: translateY(-3px); }
 .news-item img { width: 100%; height: 140px; object-fit: cover; }
 .news-content { padding: 1rem; }
@@ -463,14 +322,87 @@ body.search-active .search-box {
 .news-item a { text-decoration: none; color: var(--text-main); font-weight: 600; }
 
 .loader {
-  border: 3px solid #f3f3f3;
-  border-top: 3px solid var(--primary);
-  border-radius: 50%;
-  width: 40px; height: 40px;
-  animation: spin 1s linear infinite;
-  margin: 2rem auto;
+  border: 3px solid #f3f3f3; border-top: 3px solid var(--primary); border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 2rem auto;
 }
-
 .hidden { display: none !important; }
 
 @keyframes spin { to { transform: rotate(360deg); } }
+
+/* --- MODAL STYLES (NEW) --- */
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(15, 23, 42, 0.4);
+  backdrop-filter: blur(4px);
+  z-index: 2000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.modal-overlay.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-card {
+  background: var(--card-bg);
+  width: 90%;
+  max-width: 450px;
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  transform: translateY(30px);
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+}
+
+.modal-overlay.open .modal-card {
+  transform: translateY(0);
+}
+
+.modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1.2rem;
+  font-size: 1.8rem;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  line-height: 1;
+}
+
+.modal-header h2 {
+  font-size: 1.5rem;
+  color: var(--primary);
+  margin-bottom: 1rem;
+}
+
+.modal-body {
+  color: var(--text-muted);
+  line-height: 1.6;
+  font-size: 0.95rem;
+  margin-bottom: 2rem;
+}
+
+.modal-footer {
+  text-align: right;
+}
+
+.btn-modal-action {
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.btn-modal-action:hover {
+  background: var(--primary-hover);
+}

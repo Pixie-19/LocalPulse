@@ -1,4 +1,3 @@
-
 import { NEWS_API_KEY, NEWS_BASE_URL } from "./config.js";
 
 export async function getNews(city) {
