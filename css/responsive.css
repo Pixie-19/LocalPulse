@@ -1,43 +1,61 @@
 
 @media (max-width: 900px) {
+  .nav-links {
+    display: none; /* Simple mobile hide for now */
+  }
+
+  .headline {
+    font-size: 2.2rem;
+  }
+
+  .cityscape {
+    opacity: 0.5; /* Fade out city on tablet to save space */
+  }
+
   .content-grid {
-    grid-template-columns: 1fr; /* Stack weather and news vertically */
-  }
-
-  body.search-active .hero-content {
-    padding-right: 0; /* Remove nav gap on smaller screens */
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  body.search-active .navbar {
-    position: relative;
-    width: 100%;
-    justify-content: center;
-    padding: 0.5rem;
-  }
-  
-  body.search-active .nav-container {
-    justify-content: center;
-  }
-
-  body.search-active .logo {
-    margin-bottom: 0.5rem;
+    grid-template-columns: 1fr;
   }
 }
 
 @media (max-width: 600px) {
-  .logo { font-size: 2.5rem; }
+  .app-wrapper {
+    padding: 1rem;
+  }
   
-  body.search-active .search-box {
+  .navbar {
+    padding: 1.5rem;
+  }
+
+  .headline {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .search-box {
+    flex-direction: column;
+    border-radius: 20px;
+    padding: 10px;
+    gap: 10px;
+  }
+
+  .separator { display: none; }
+  
+  .filter-group {
+    width: 100%;
+    justify-content: center;
+    padding: 0.5rem;
+    border-top: 1px solid #f1f5f9;
+  }
+
+  .search-box button {
     width: 100%;
   }
 
-  .current-weather h3 {
-    font-size: 2.5rem;
+  .cityscape {
+    display: none; /* Hide on small screens */
   }
-  
-  .card {
+
+  .results-container {
     padding: 1rem;
   }
 }

@@ -4,78 +4,123 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Loca</title>
+  <title>LocalPulse</title>
 
-  <!-- Google Fonts: Inter -->
+  <!-- Google Fonts: Inter & DM Sans for a modern feel -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="css/main.css" />
   <link rel="stylesheet" href="css/responsive.css" />
 </head>
 <body>
 
-  <!-- Background decorative elements -->
-  <div class="bg-shape shape-1"></div>
-  <div class="bg-shape shape-2"></div>
+  <!-- Background Dots Pattern -->
+  <div class="bg-pattern"></div>
 
   <div class="app-wrapper">
     
-    <!-- Navbar -->
-    <nav class="navbar">
-      <div class="nav-container">
-        <!-- Optional: Mini logo could go here, but we focus on Home link -->
-        <span class="nav-brand-placeholder"></span> 
-        <ul class="nav-links">
-          <li><a href="#" id="homeBtn" class="active">Home</a></li>
-        </ul>
-      </div>
-    </nav>
-    
-    <header id="heroSection" class="hero">
-      <div class="hero-content">
-        <h1 class="logo">Loca</h1>
-        <p class="tagline" id="citySummary">Discover the heartbeat of your city</p>
-        
-        <div class="search-box">
-          <div class="input-wrapper">
-            <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-            <input type="text" id="cityInput" placeholder="Enter city name (e.g., London)..." autocomplete="off" />
-          </div>
-          <button id="searchBtn">Search</button>
+    <!-- Main White Card Container -->
+    <div class="landing-card" id="landingCard">
+      
+      <!-- Navbar inside the card -->
+      <nav class="navbar">
+        <div class="nav-container">
+          <a href="#" class="nav-logo" id="homeBtn">
+            <div class="logo-icon"></div>
+            <span>LocalPulse</span>
+          </a>
+          
+          <ul class="nav-links">
+            <li><a href="#">Services</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Features</a></li>
+            <li><a href="#">News</a></li>
+          </ul>
+
+          <a href="#" class="btn-signup">Sign Up</a>
         </div>
-      </div>
-    </header>
+      </nav>
 
-    <main class="container hidden" id="mainContent">
-      <div id="loader" class="loader hidden"></div>
+      <!-- Hero Section -->
+      <header id="heroSection" class="hero">
+        <div class="hero-content">
+          <!-- Background Arch behind text -->
+          <div class="hero-arch"></div>
+          
+          <h1 class="headline">Find Your City's <br> Perfect Pulse.</h1>
+          
+          <div class="search-container">
+            <div class="search-box">
+              <div class="input-group">
+                <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                <input type="text" id="cityInput" placeholder="Search for a location..." autocomplete="off" />
+              </div>
+              
+              <div class="separator"></div>
+              
+              <div class="filter-group">
+                <span>Latest Updates</span>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+              </div>
 
-      <div id="contentGrid" class="content-grid hidden">
-        <!-- Weather Section -->
-        <section class="card weather-card">
-          <div class="card-header">
-            <h2>Forecast</h2>
-            <div id="weatherMeta" class="weather-meta"></div>
+              <button id="searchBtn">SEARCH</button>
+            </div>
           </div>
-          <div id="currentWeather" class="current-weather"></div>
-          <div id="forecast" class="forecast-row"></div>
-        </section>
+        </div>
 
-        <!-- News Section -->
-        <section class="card news-card-container">
-          <div class="card-header">
-            <h2>Trending Locally</h2>
+        <!-- CSS Cityscape Illustration -->
+        <div class="cityscape">
+          <div class="building b1">
+            <div class="window-row"><span></span><span></span></div>
+            <div class="window-row"><span></span><span></span></div>
+            <div class="window-row"><span></span><span></span></div>
           </div>
-          <div id="newsContainer" class="news-grid"></div>
-        </section>
-      </div>
-    </main>
+          <div class="building b2">
+             <div class="roof-slope"></div>
+             <div class="window-grid"></div>
+          </div>
+          <div class="building b3">
+            <div class="b3-top"></div>
+            <div class="window-lines"></div>
+          </div>
+          <div class="building b4">
+             <div class="dome"></div>
+             <div class="door"></div>
+          </div>
+          <div class="tree t1"></div>
+          <div class="tree t2"></div>
+          <div class="street-line"></div>
+        </div>
+      </header>
 
-    <footer class="main-footer">
-      <p>&copy; 2026 Loca. Built with code & love.</p>
-    </footer>
+      <!-- Results Section (Initially Hidden) -->
+      <main class="results-container hidden" id="mainContent">
+        <div id="loader" class="loader hidden"></div>
 
+        <div id="contentGrid" class="content-grid hidden">
+          <!-- Weather Section -->
+          <section class="result-card weather-card">
+            <div class="card-header">
+              <h2>Forecast</h2>
+              <div id="weatherMeta" class="weather-meta"></div>
+            </div>
+            <div id="currentWeather" class="current-weather"></div>
+            <div id="forecast" class="forecast-row"></div>
+          </section>
+
+          <!-- News Section -->
+          <section class="result-card news-card-container">
+            <div class="card-header">
+              <h2>Trending Locally</h2>
+            </div>
+            <div id="newsContainer" class="news-grid"></div>
+          </section>
+        </div>
+      </main>
+
+    </div> <!-- End Landing Card -->
   </div>
 
   <script type="module" src="js/app.js"></script>
