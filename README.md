@@ -7,6 +7,11 @@ LocalPulse is a modern, lightweight single-page application (SPA) that aggregate
 ![Project Status](https://img.shields.io/badge/status-active-success.svg)
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 
+## Screenshots
+
+![Landing Page](assets/home.png)
+![Weather & News Dashboard](assets/dashboard.png)
+
 ## Features
 
 - **Smart Search:** Instantly find data for any city globally.
