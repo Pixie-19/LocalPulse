@@ -69,9 +69,17 @@ LOCALPULSE/
 
 2. **Configure API Keys (.env)**
 
-    - Open `.env` and set:
-      - `VITE_WEATHER_API_KEY`
-      - `VITE_NEWS_API_KEY`
+    Create a `.env` file in the project root and add the following:
+
+```env
+# OpenWeatherMap API
+VITE_WEATHER_API_KEY=YOUR_OPENWEATHER_API_KEY
+VITE_WEATHER_BASE_URL=https://api.openweathermap.org/data/2.5/forecast
+
+# News API
+VITE_NEWS_API_KEY=YOUR_NEWSAPI_KEY
+VITE_NEWS_BASE_URL=https://newsapi.org/v2/everything
+```
 
 3. **Install & Run**
 
